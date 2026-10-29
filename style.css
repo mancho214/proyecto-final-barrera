@@ -1,0 +1,24 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  font-family:monospace;
+}
+
+body{
+    background-color: rgb(115, 235, 227);
+}
+
+.botonera {
+    gap: 10px;
+}
+
+.boton{
+    padding: 15px 60px;
+    border-radius: 6px;
+    border-style: none;
+    background-color: rgb(255, 243, 21);
+    font-size: 18px;
+}
