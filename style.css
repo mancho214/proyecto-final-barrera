@@ -4,11 +4,11 @@ body{
     justify-content: center;
     align-items: center;
     text-align: center;
-  font-family:monospace;
+  font-family:Tahoma;
 }
 
 body{
-    background-color: rgb(115, 235, 227);
+    background-color: rgb(191, 240, 236);
 }
 
 .botonera {
@@ -19,6 +19,6 @@ body{
     padding: 15px 60px;
     border-radius: 6px;
     border-style: none;
-    background-color: rgb(255, 243, 21);
+    background-color: rgb(224, 218, 88);
     font-size: 18px;
 }
