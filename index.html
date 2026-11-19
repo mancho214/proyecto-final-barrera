@@ -13,9 +13,22 @@
     <span class="subtitulo">Estado actual:</span>
     <span class="estado"></span>
     <div class="botonera">
-        <button type="button" class="boton">subir</button>
-        <button type="button" class="boton" id="potato">bajar</button>
+        <button type="button" class="boton" data-accion="1">subir</button>
+        <button type="button" class="boton" data-accion="0">bajar</button>
     </div>
-    
+    <script>
+        const botones = document.querySelectorAll(".boton")
+
+        botones.forEach(boton => boton.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            const accion = boton.getAttribute("data-accion")
+
+            console.log(accion)
+
+            const url = window.location.href.split('/update?')[0];
+            document.location.href = url + '/update?' + accion;
+        }))
+    </script>
 </body>
 </html>

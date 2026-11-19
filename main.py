@@ -3,10 +3,6 @@ from servo import Servo
 
 barrera = Servo(Pin(25))
 
-barrera.write_angle(0)
-sleep(2)
-barrera.write_angle(90)
-
 def webpage():
     html = '''
         <!DOCTYPE html>
@@ -49,9 +45,23 @@ def webpage():
     <span class="subtitulo">Estado actual:</span>
     <span class="estado"></span>
     <div class="botonera">
-        <button type="button" class="boton">subir</button>
-        <button type="button" class="boton" id="potato">bajar</button>
+        <button type="button" class="boton" data-accion="1">subir</button>
+        <button type="button" class="boton" data-accion="0">bajar</button>
     </div>
+    <script>
+        const botones = document.querySelectorAll(".boton")
+
+        botones.forEach(boton => boton.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            const accion = boton.getAttribute("data-accion")
+
+            console.log(accion)
+
+            const url = window.location.href.split('/update?')[0];
+            document.location.href = url + '/update?' + accion;
+        }))
+    </script>
 </body>
 </html>
         '''
@@ -71,16 +81,17 @@ def obtener_parametros(request):
             break
 
     if not linea_correcta:
-        return {}
+        return None
     
-    query = linea_correcta.split('/update?', 1)[1]
-    parametros = {}
-    for par in query.split('&'):
-        if '=' in par:
-            clave, valor = par.split('=', 1)
-            parametros[clave] = valor
+    query = linea_correcta.split('/update?', 1)[1][0]
     
-    return parametros
+    return query
+
+def mover_barrera(direccion):
+    if direccion = {1}
+    barrera.write_angle(90) 
+if direccion = {0}
+    barrera.write_angle(0) 
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind(('',80))
@@ -94,7 +105,9 @@ while True:
     print(f'Contenido = {request}')
 
     parametros = obtener_parametros(request)
-    print (parametros)
+    print (f"Accion: {parametros}")
+
+    mover_barrera(int(parametros))
 
     response = webpage()
     conn.send('HTTP/1.1 200 OK\n')
